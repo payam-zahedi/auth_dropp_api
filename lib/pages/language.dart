@@ -7,7 +7,6 @@ class LanguagePage extends StatefulWidget {
 }
 
 class _LanguagePageState extends State<LanguagePage> {
-  DataModel dataModel;
 
   @override
   Widget build(BuildContext context) {

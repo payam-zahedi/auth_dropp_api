@@ -1,4 +1,3 @@
-import 'package:auth_dropp_api/model/data.dart';
 import 'package:auth_dropp_api/resources/colors.dart';
 import 'package:flutter/material.dart';
 
