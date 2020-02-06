@@ -7,10 +7,31 @@ abstract class LoginState extends Equatable {
   List<Object> get props => [];
 }
 
-class InitialLoginState extends LoginState {}
+class InitialLoginState extends LoginState {
+  @override
+  String toString() {
+    return super.toString();
+  }
+}
 
-class LoginSucceed extends LoginState {}
+class LoginSucceed extends LoginState {
+  @override
+  String toString() {
+    return super.toString();
+  }
+}
 
-class LoginError extends LoginState {}
+class LoginError extends LoginState {
 
-class Loading extends LoginState {}
+  @override
+  String toString() {
+    return super.toString();
+  }
+}
+
+class Loading extends LoginState {
+  @override
+  String toString() {
+    return super.toString();
+  }
+}

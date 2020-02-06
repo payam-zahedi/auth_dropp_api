@@ -20,11 +20,13 @@ class DropService {
 
   static Future<Data> completeLogin(String username, String password) async {
     try {
-      Response response = await _dio.post('/api/users/login/complete',
+      Response response = await getInstance().post('/api/users/login/complete',
           data: {'username': username, 'password': password});
       var rawData = response.data;
-      var responseData = Data.fromJson(rawData['data']);
+      Data responseData = Data.fromJson(rawData['data']);
+      print(responseData.token);
       return responseData;
+
     } catch (e, s) {
       print('$e,$s');
       return e;

@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<LoginBloc>(
-      create: (context) => LoginBloc()..add(AppStarted()),
+      create: (context) => LoginBloc(),
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
@@ -115,13 +115,21 @@ class _LoginPageState extends State<LoginPage> {
                           width: 110,
                           child: BlocBuilder<LoginBloc, LoginState>(
                             builder: (context, state) {
+                              if (state is LoginError) {
+                                print('Error');
+                              } else if (state is LoginSucceed) {
+                                print('nice');
+                              }
                               return RaisedButton(
                                 onPressed: () {
                                   if (_formKey.currentState.validate()) {
                                     _formKey.currentState.save();
                                     print('clicked Login');
-                                    BlocProvider.of<LoginBloc>(context)
-                                        .add(LoginPressed());
+                                    BlocProvider.of<LoginBloc>(context).add(
+                                      LoginPressed(
+                                          user: usernameController.text,
+                                          pass: passwordController.text),
+                                    );
                                   }
                                 },
                                 color: MyColors.loginBtnColor,
@@ -215,7 +223,6 @@ class CurvePainter extends CustomPainter {
     var paint = Paint();
 
     paint.color = MyColors.arkColor;
-    //todo: fix color of ark
     paint.style = PaintingStyle.fill;
 
     path.moveTo(0, size.height / 4);
