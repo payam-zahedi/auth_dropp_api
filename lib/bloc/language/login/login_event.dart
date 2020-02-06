@@ -7,6 +7,8 @@ abstract class LoginEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class AppStarted extends LoginEvent {}
+
 class LoginPressed extends LoginEvent {
   @override
   String toString() {

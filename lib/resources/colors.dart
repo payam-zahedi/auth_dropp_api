@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class MyColors {
+  static Color appTheme = Colors.indigo;
   static Color arkColor = Colors.indigo[400];
   static Color profileAppBar = Colors.indigo[400];
   static Color regBtnColor = Colors.indigo[400];

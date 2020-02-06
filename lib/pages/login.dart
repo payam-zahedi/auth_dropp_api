@@ -1,5 +1,9 @@
+import 'package:auth_dropp_api/bloc/language/login/login_bloc.dart';
+import 'package:auth_dropp_api/bloc/language/login/login_event.dart';
+import 'package:auth_dropp_api/bloc/language/login/login_state.dart';
 import 'package:auth_dropp_api/resources/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -18,137 +22,162 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
-              HeaderWidget(),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'User Name',
-                      style: TextStyle(
-                          fontSize: 13,
-                          color: MyColors.textColor,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 9,
-                    ),
-                    Container(
-                      height: 50,
-                      decoration: BoxDecoration(
+    return BlocProvider<LoginBloc>(
+      create: (context) => LoginBloc()..add(AppStarted()),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                HeaderWidget(),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'User Name',
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: MyColors.textColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 9,
+                      ),
+                      Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: MyColors.textFieldBkColor),
+                        child: TextFormField(
+                          validator: (val) {
+                            if (val.isEmpty) {
+                              return 'Enter Your Username';
+                            } else {
+                              return null;
+                            }
+                          },
+                          controller: usernameController,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 20),
+                          ),
+                          cursorColor: MyColors.textFieldCursor,
+                          minLines: 1,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 12,
+                      ),
+                      Text(
+                        'Password',
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: MyColors.textColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 9,
+                      ),
+                      Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: MyColors.textFieldBkColor,
                           borderRadius: BorderRadius.circular(30),
-                          color: MyColors.textFieldBkColor),
-                      child: TextFormField(
-                        validator: (val) {
-                          if (val.isEmpty) {
-                            return 'Enter Your Username';
-                          } else {
-                            return null;
-                          }
-                        },
-                        controller: usernameController,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
                         ),
-                        cursorColor: MyColors.textFieldCursor,
-                        minLines: 1,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    Text(
-                      'Password',
-                      style: TextStyle(
-                          fontSize: 13,
-                          color: MyColors.textColor,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 9,
-                    ),
-                    Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: MyColors.textFieldBkColor,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: TextFormField(
-                        validator: (val) {
-                          if (val.isEmpty) {
-                            return 'Enter Your Password';
-                          } else {
-                            return null;
-                          }
-                        },
-                        controller: passwordController,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                        ),
-                        cursorColor: MyColors.textFieldCursor,
-                        minLines: 1,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Center(
-                      child: SizedBox(
-                        width: 110,
-                        child: RaisedButton(
-                          onPressed: () {},
-                          color: MyColors.loginBtnColor,
-                          child: Text(
-                            'Log In',
-                            style: TextStyle(
-                                color: MyColors.btnTextColor,
-                                fontWeight: FontWeight.bold),
+                        child: TextFormField(
+                          validator: (val) {
+                            if (val.isEmpty) {
+                              return 'Enter Your Password';
+                            } else {
+                              return null;
+                            }
+                          },
+                          controller: passwordController,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 20),
                           ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
+                          cursorColor: MyColors.textFieldCursor,
+                          minLines: 1,
                         ),
                       ),
-                    ),
-                    Center(
-                      child: SizedBox(
-                        width: 110,
-                        child: RaisedButton(
-                          onPressed: () {},
-                          color: MyColors.regBtnColor,
-                          child: Text(
-                            'Sign Up',
-                            style: TextStyle(
-                                color: MyColors.btnTextColor,
-                                fontWeight: FontWeight.bold),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Center(
+                        child: SizedBox(
+                          width: 110,
+                          child: BlocBuilder<LoginBloc, LoginState>(
+                            builder: (context, state) {
+                              return RaisedButton(
+                                onPressed: () {
+                                  if (_formKey.currentState.validate()) {
+                                    _formKey.currentState.save();
+                                    print('clicked Login');
+                                    BlocProvider.of<LoginBloc>(context)
+                                        .add(LoginPressed());
+                                  }
+                                },
+                                color: MyColors.loginBtnColor,
+                                child: (state is Loading)
+                                    ? SizedBox(
+                                        width: 20,
+                                        height: 20,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 1.7,
+                                        ),
+                                      )
+                                    : Text(
+                                        'Log In',
+                                        style: TextStyle(
+                                            color: MyColors.btnTextColor,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                              );
+                            },
                           ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Center(
-                      child: Text(
-                        'Forgotten password?',
-                        style: TextStyle(color: Colors.grey[700], fontSize: 11),
+                      Center(
+                        child: SizedBox(
+                          width: 110,
+                          child: RaisedButton(
+                            onPressed: () {},
+                            color: MyColors.regBtnColor,
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                  color: MyColors.btnTextColor,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Center(
+                        child: Text(
+                          'Forgotten password?',
+                          style:
+                              TextStyle(color: Colors.grey[700], fontSize: 11),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

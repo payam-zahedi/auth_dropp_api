@@ -10,6 +10,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Stream<LoginState> mapEventToState(
     LoginEvent event,
   ) async* {
-    // TODO: Add Logic
+    if(event is LoginPressed){
+      yield Loading();
+      Future.delayed(Duration(seconds: 4));
+    }
   }
 }

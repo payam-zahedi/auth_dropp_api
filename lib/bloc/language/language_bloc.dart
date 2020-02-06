@@ -10,6 +10,6 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
   Stream<LanguageState> mapEventToState(
     LanguageEvent event,
   ) async* {
-    // TODO: Add Logic
+
   }
 }
