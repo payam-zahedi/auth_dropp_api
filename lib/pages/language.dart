@@ -1,5 +1,7 @@
 import 'package:auth_dropp_api/bloc/localizations/bloc.dart';
 import 'package:auth_dropp_api/model/data.dart';
+import 'package:auth_dropp_api/pages/login.dart';
+import 'package:auth_dropp_api/utils/localization/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,13 +11,8 @@ class LanguagePage extends StatefulWidget {
 }
 
 class _LanguagePageState extends State<LanguagePage> {
-  LocalizationsBloc _localizationsBloc;
 
-  @override
-  void initState() {
-    _localizationsBloc = BlocProvider.of<LocalizationsBloc>(context);
-    super.initState();
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +22,8 @@ class _LanguagePageState extends State<LanguagePage> {
         children: <Widget>[
           Text(
             'Select Your Language!',
-            style:
-                TextStyle(color: Colors.grey[700], fontWeight: FontWeight.bold),
+            style: TextStyle(
+                color: Colors.grey[700], fontWeight: FontWeight.bold),
           ),
           SizedBox(
             height: 30,
@@ -36,7 +33,7 @@ class _LanguagePageState extends State<LanguagePage> {
             children: <Widget>[
               GestureDetector(
                 onTap: () {
-                  _localizationsBloc.add(PersianLocaleSelect());
+                  BlocProvider.of<LocalizationsBloc>(context)..add(PersianLocaleSelect());
                 },
                 child: FlagItem(
                   img: 'assets/images/iranFlag.png',
@@ -48,7 +45,7 @@ class _LanguagePageState extends State<LanguagePage> {
               ),
               GestureDetector(
                 onTap: () {
-                  _localizationsBloc.add(EnglishLocaleSelect());
+                  BlocProvider.of<LocalizationsBloc>(context)..add(EnglishLocaleSelect());
                 },
                 child: FlagItem(
                   img: 'assets/images/usaFlag.png',

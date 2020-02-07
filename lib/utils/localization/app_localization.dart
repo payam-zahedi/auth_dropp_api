@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:auth_dropp_api/utils/localization/application_locale.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
@@ -39,7 +40,8 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) {
-    return ['en', 'fa'].contains(locale.languageCode);
+    return applicationLocale.supportedLanguageCodes
+        .contains(locale.languageCode);
   }
 
   @override
@@ -51,6 +53,6 @@ class _AppLocalizationsDelegate
 
   @override
   bool shouldReload(LocalizationsDelegate<AppLocalizations> old) {
-    return false;
+    return true;
   }
 }

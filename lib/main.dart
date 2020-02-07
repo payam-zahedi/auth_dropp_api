@@ -17,54 +17,29 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<LocalizationsBloc>(
-          create: (context) => LocalizationsBloc(),
-        ),
-        BlocProvider<AuthBloc>(
-          create: (context) => AuthBloc(),
-        ),
-      ],
-      child: MultiBlocListener(
-        listeners: [
-          BlocListener<LocalizationsBloc, LocalizationsState>(
-            listener: (context, state) {},
-          ),
-          BlocListener<AuthBloc, AuthState>(
-            listener: (context, state) {},
-          ),
-        ],
-        child: BlocBuilder<LocalizationsBloc, LocalizationsState>(
-          builder: (context, state) {
-            return MaterialApp(
-              title: 'Flutter Demo',
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                primarySwatch: MyColors.appTheme,
-              ),
-              home: LanguagePage(),
-              supportedLocales: [
-                Locale('en', 'US'),
-                Locale('fa', 'IR'),
-              ],
-              localizationsDelegates: [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-              ],
-              localeResolutionCallback: (locale, supportedLocales) {
-                for (var supportedLocale in supportedLocales) {
-                  if (supportedLocale.languageCode == locale.languageCode &&
-                      supportedLocale.countryCode == locale.countryCode) {
-                    return supportedLocale;
-                  }
-                }
-                return supportedLocales.first;
-              },
-            );
-          },
-        ),
+    return BlocProvider<LocalizationsBloc>(
+      create: (context) => LocalizationsBloc(),
+      child: BlocBuilder<LocalizationsBloc, LocalizationsState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            locale: (state is PersianLocaleSelected) ? Locale('fa'):Locale('es'),
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              primarySwatch: MyColors.appTheme,
+            ),
+            home: LanguagePage(),
+            supportedLocales: [
+              Locale('en', 'US'),
+              Locale('fa', 'IR'),
+            ],
+            localizationsDelegates: [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+            ],
+          );
+        },
       ),
     );
   }
