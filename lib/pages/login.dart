@@ -3,6 +3,7 @@ import 'package:auth_dropp_api/bloc/login/login_event.dart';
 import 'package:auth_dropp_api/bloc/login/login_state.dart';
 import 'package:auth_dropp_api/pages/profile.dart';
 import 'package:auth_dropp_api/resources/colors.dart';
+import 'package:auth_dropp_api/utils/localization/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -52,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'User Name',
+                          AppLocalizations.of(context).translate('usernameFieldLabel'),
                           style: TextStyle(
                               fontSize: 13,
                               color: MyColors.textColor,
@@ -88,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                           height: 12,
                         ),
                         Text(
-                          'Password',
+                          AppLocalizations.of(context).translate('passFieldLabel'),
                           style: TextStyle(
                               fontSize: 13,
                               color: MyColors.textColor,
@@ -129,11 +130,6 @@ class _LoginPageState extends State<LoginPage> {
                             width: 110,
                             child: BlocBuilder<LoginBloc, LoginState>(
                               builder: (context, state) {
-//                              if (state is LoginError) {
-//                                print('Error');
-//                              } else if (state is LoginSucceed) {
-//                                print('nice');
-//                              }
                                 return RaisedButton(
                                   onPressed: () {
                                     if (_formKey.currentState.validate()) {
@@ -156,8 +152,8 @@ class _LoginPageState extends State<LoginPage> {
                                           ),
                                         )
                                       : Text(
-                                          'Log In',
-                                          style: TextStyle(
+                                    AppLocalizations.of(context).translate('loginBtnLabel'),
+                                    style: TextStyle(
                                               color: MyColors.btnTextColor,
                                               fontWeight: FontWeight.bold),
                                         ),
@@ -175,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                               onPressed: () {},
                               color: MyColors.regBtnColor,
                               child: Text(
-                                'Sign Up',
+                                AppLocalizations.of(context).translate('signUpBtnLabel'),
                                 style: TextStyle(
                                     color: MyColors.btnTextColor,
                                     fontWeight: FontWeight.bold),
