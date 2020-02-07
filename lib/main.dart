@@ -1,6 +1,8 @@
 import 'package:auth_dropp_api/pages/login.dart';
 import 'package:auth_dropp_api/resources/colors.dart';
+import 'package:auth_dropp_api/utils/localization/app_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,6 +16,24 @@ class MyApp extends StatelessWidget {
         primarySwatch: MyColors.appTheme,
       ),
       home: LoginPage(),
+      supportedLocales: [
+        Locale('en', 'US'),
+        Locale('fa', 'IR'),
+      ],
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      localeResolutionCallback: (locale, supportedLocales) {
+        for (var supportedLocale in supportedLocales) {
+          if (supportedLocale.languageCode == locale.languageCode &&
+              supportedLocale.countryCode == locale.countryCode) {
+            return supportedLocale;
+          }
+        }
+        return supportedLocales.first;
+      },
     );
   }
 }
