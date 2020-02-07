@@ -1,6 +1,6 @@
-import 'package:auth_dropp_api/bloc/localizations/login/login_bloc.dart';
-import 'package:auth_dropp_api/bloc/localizations/login/login_event.dart';
-import 'package:auth_dropp_api/bloc/localizations/login/login_state.dart';
+import 'package:auth_dropp_api/bloc/login/login_bloc.dart';
+import 'package:auth_dropp_api/bloc/login/login_event.dart';
+import 'package:auth_dropp_api/bloc/login/login_state.dart';
 import 'package:auth_dropp_api/pages/profile.dart';
 import 'package:auth_dropp_api/resources/colors.dart';
 import 'package:flutter/material.dart';

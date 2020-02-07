@@ -1,0 +1,11 @@
+{
+  "emailFieldLabel": "Email",
+  "passFieldLabel": "Password",
+  "loginBtnLabel": "Log in",
+  "signUpBtnLabel": "Sign Up",
+  "forgetPassword": "Forgotten password?",
+  "usernameFieldLabel": "Username",
+  "haveAccount": "Already have an account?",
+  "signUpPageTitle": "Create Account",
+  "verifyPageTitle": "Verify Account"
+}
