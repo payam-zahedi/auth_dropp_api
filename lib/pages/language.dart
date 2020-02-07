@@ -34,6 +34,7 @@ class _LanguagePageState extends State<LanguagePage> {
               GestureDetector(
                 onTap: () {
                   BlocProvider.of<LocalizationsBloc>(context)..add(PersianLocaleSelect());
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()));
                 },
                 child: FlagItem(
                   img: 'assets/images/iranFlag.png',
@@ -46,6 +47,7 @@ class _LanguagePageState extends State<LanguagePage> {
               GestureDetector(
                 onTap: () {
                   BlocProvider.of<LocalizationsBloc>(context)..add(EnglishLocaleSelect());
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()));
                 },
                 child: FlagItem(
                   img: 'assets/images/usaFlag.png',
