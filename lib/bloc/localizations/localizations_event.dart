@@ -7,6 +7,16 @@ abstract class LocalizationsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class PersianLocaleSelect extends LocalizationsEvent {}
+class PersianLocaleSelect extends LocalizationsEvent {
+  @override
+  String toString() {
+    return super.toString();
+  }
+}
 
-class EnglishLocaleSelect extends LocalizationsEvent {}
+class EnglishLocaleSelect extends LocalizationsEvent {
+  @override
+  String toString() {
+    return super.toString();
+  }
+}

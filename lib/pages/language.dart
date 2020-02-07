@@ -1,5 +1,7 @@
+import 'package:auth_dropp_api/bloc/localizations/bloc.dart';
 import 'package:auth_dropp_api/model/data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LanguagePage extends StatefulWidget {
   @override
@@ -7,6 +9,13 @@ class LanguagePage extends StatefulWidget {
 }
 
 class _LanguagePageState extends State<LanguagePage> {
+  LocalizationsBloc _localizationsBloc;
+
+  @override
+  void initState() {
+    _localizationsBloc = BlocProvider.of<LocalizationsBloc>(context);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +35,9 @@ class _LanguagePageState extends State<LanguagePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  _localizationsBloc.add(PersianLocaleSelect());
+                },
                 child: FlagItem(
                   img: 'assets/images/iranFlag.png',
                   title: 'فارسی',
@@ -36,7 +47,9 @@ class _LanguagePageState extends State<LanguagePage> {
                 width: 20,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  _localizationsBloc.add(EnglishLocaleSelect());
+                },
                 child: FlagItem(
                   img: 'assets/images/usaFlag.png',
                   title: 'English',

@@ -10,6 +10,10 @@ class LocalizationsBloc extends Bloc<LocalizationsEvent, LocalizationsState> {
   Stream<LocalizationsState> mapEventToState(
     LocalizationsEvent event,
   ) async* {
-    // TODO: Add Logic
+    if(event is PersianLocaleSelect){
+      yield PersianLocaleSelected();
+    } else {
+      yield EnglishLocaleSelected();
+    }
   }
 }

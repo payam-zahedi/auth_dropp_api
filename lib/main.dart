@@ -8,7 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  BlocSupervisor.delegate = Delegate();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -23,32 +26,60 @@ class MyApp extends StatelessWidget {
           create: (context) => AuthBloc(),
         ),
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: MyColors.appTheme,
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<LocalizationsBloc, LocalizationsState>(
+            listener: (context, state) {},
+          ),
+          BlocListener<AuthBloc, AuthState>(
+            listener: (context, state) {},
+          ),
+        ],
+        child: BlocBuilder<LocalizationsBloc, LocalizationsState>(
+          builder: (context, state) {
+            return MaterialApp(
+              title: 'Flutter Demo',
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                primarySwatch: MyColors.appTheme,
+              ),
+              home: LanguagePage(),
+              supportedLocales: [
+                Locale('en', 'US'),
+                Locale('fa', 'IR'),
+              ],
+              localizationsDelegates: [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+              ],
+              localeResolutionCallback: (locale, supportedLocales) {
+                for (var supportedLocale in supportedLocales) {
+                  if (supportedLocale.languageCode == locale.languageCode &&
+                      supportedLocale.countryCode == locale.countryCode) {
+                    return supportedLocale;
+                  }
+                }
+                return supportedLocales.first;
+              },
+            );
+          },
         ),
-        home: LanguagePage(),
-        supportedLocales: [
-          Locale('en', 'US'),
-          Locale('fa', 'IR'),
-        ],
-        localizationsDelegates: [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        localeResolutionCallback: (locale, supportedLocales) {
-          for (var supportedLocale in supportedLocales) {
-            if (supportedLocale.languageCode == locale.languageCode &&
-                supportedLocale.countryCode == locale.countryCode) {
-              return supportedLocale;
-            }
-          }
-          return supportedLocales.first;
-        },
       ),
     );
+  }
+}
+
+class Delegate extends BlocDelegate {
+  @override
+  void onError(Bloc bloc, Object error, StackTrace stacktrace) {
+    super.onError(bloc, error, stacktrace);
+    print('error : $error & stack : $stacktrace');
+  }
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    super.onTransition(bloc, transition);
+    print('bloc : $bloc , transaction : $transition');
   }
 }
