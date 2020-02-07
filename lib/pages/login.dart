@@ -1,6 +1,7 @@
 import 'package:auth_dropp_api/bloc/language/login/login_bloc.dart';
 import 'package:auth_dropp_api/bloc/language/login/login_event.dart';
 import 'package:auth_dropp_api/bloc/language/login/login_state.dart';
+import 'package:auth_dropp_api/pages/profile.dart';
 import 'package:auth_dropp_api/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,12 +30,7 @@ class _LoginPageState extends State<LoginPage> {
         body: BlocListener<LoginBloc, LoginState>(
           listener: (context, state) {
             if (state is LoginSucceed) {
-              Scaffold.of(context).showSnackBar(
-                SnackBar(
-                  backgroundColor: Colors.green,
-                  content: Text('Success'),
-                ),
-              );
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
             } else if (state is LoginError) {
               Scaffold.of(context).showSnackBar(
                 SnackBar(

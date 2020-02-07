@@ -14,24 +14,25 @@ class DropService {
         receiveTimeout: 3000,
       );
       _dio = Dio(options);
+      _dio.interceptors.add(
+        LogInterceptor(
+          error: true,
+          request: true,
+          requestHeader: true,
+          responseBody: true,
+          responseHeader: true,
+          requestBody: true,
+        ),
+      );
     }
     return _dio;
   }
 
-  static Future<Response> completeLogin(
+  static Future<DataModel> completeLogin(
       String username, String password) async {
-    try {
-      return await getInstance().post('/api/users/login/complete',
+      Response response = await getInstance().post('/api/users/login/complete',
           data: {'username': username, 'password': password});
-    } on DioError catch (e) {
-      if (e.response != null) {
-        print(e.response.data);
-        print(e.response.headers);
-        print(e.response.request);
-      } else {
-        print(e.request);
-        print(e.message);
-      }
-    }
+      DataModel data = DataModel.fromJson(response.data);
+      return data;
   }
 }
