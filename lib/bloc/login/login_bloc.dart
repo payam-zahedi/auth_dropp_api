@@ -18,6 +18,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         yield Loading();
         await Future.delayed(Duration(seconds: 1));
 
+        //todo: add await before DropService.completeLogin 
         var data = DropService.completeLogin(event.user, event.pass);
 
         if (data != null) {
