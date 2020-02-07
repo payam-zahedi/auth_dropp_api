@@ -18,18 +18,20 @@ class DropService {
     return _dio;
   }
 
-  static Future<Data> completeLogin(String username, String password) async {
+  static Future<Response> completeLogin(
+      String username, String password) async {
     try {
-      Response response = await getInstance().post('/api/users/login/complete',
+      return await getInstance().post('/api/users/login/complete',
           data: {'username': username, 'password': password});
-      var rawData = response.data;
-      Data responseData = Data.fromJson(rawData['data']);
-      print(responseData.token);
-      return responseData;
-
-    } catch (e, s) {
-      print('$e,$s');
-      return e;
+    } on DioError catch (e) {
+      if (e.response != null) {
+        print(e.response.data);
+        print(e.response.headers);
+        print(e.response.request);
+      } else {
+        print(e.request);
+        print(e.message);
+      }
     }
   }
 }
