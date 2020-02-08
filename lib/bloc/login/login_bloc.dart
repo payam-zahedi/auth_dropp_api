@@ -18,7 +18,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         DataModel data =
             await DropService.completeLogin(event.user, event.pass);
         if (data.status == 'ok') {
-          yield LoginSucceed();
+          yield LoginSucceed(dataModel: data);
         } else if (data.status == 'unauthorized') {
           yield LoginError();
         }

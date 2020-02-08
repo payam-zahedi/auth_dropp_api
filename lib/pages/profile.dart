@@ -1,19 +1,26 @@
+import 'package:auth_dropp_api/model/data.dart';
 import 'package:auth_dropp_api/resources/colors.dart';
+import 'package:auth_dropp_api/utils/localization/app_localization.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
+
+  final DataModel dataModel;
+
+  const ProfilePage({Key key,@required this.dataModel}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-        child: DrawerWidget(),
+        child: DrawerWidget(dataModel: dataModel,),
       ),
       appBar: AppBar(
         actions: <Widget>[
           IconButton(icon: Icon(Icons.exit_to_app), onPressed: () {})
         ],
         backgroundColor: MyColors.profileAppBar,
-        title: Text('Profile'),
+        title: Text(AppLocalizations.of(context).translate('profilePageTitle')),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
@@ -21,11 +28,11 @@ class ProfilePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text('token'),
+            Text(AppLocalizations.of(context).translate('tokenLabel')),
             SizedBox(
               height: 20,
             ),
-            Text('asdasd')
+            Text(dataModel.data.token)
           ],
         ),
       ),
@@ -35,6 +42,10 @@ class ProfilePage extends StatelessWidget {
 
 class DrawerWidget extends StatelessWidget {
 
+  final DataModel dataModel;
+
+  const DrawerWidget({Key key,@required this.dataModel}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -43,10 +54,10 @@ class DrawerWidget extends StatelessWidget {
         Stack(
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountName: Text('asdasd'),
-              accountEmail: Text('asasdasd'),
+              accountName: Text(dataModel.data.user.username),
+              accountEmail: Text(dataModel.data.user.email),
               currentAccountPicture: CircleAvatar(
-                child: Text('M'),
+                child: Text('U'),
               ),
             ),
           ],

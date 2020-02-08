@@ -9,5 +9,7 @@
   "usernameFieldLabel": "Username",
   "haveAccount": "Already have an account?",
   "signUpPageTitle": "Create Account",
-  "verifyPageTitle": "Verify Account"
+  "verifyPageTitle": "Verify Account",
+  "profilePageTitle": "Profile",
+  "tokenLabel": "Token :"
 }

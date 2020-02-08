@@ -1,3 +1,4 @@
+import 'package:auth_dropp_api/bloc/auth/bloc.dart';
 import 'package:auth_dropp_api/bloc/login/login_bloc.dart';
 import 'package:auth_dropp_api/bloc/login/login_event.dart';
 import 'package:auth_dropp_api/bloc/login/login_state.dart';
@@ -31,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
         body: BlocListener<LoginBloc, LoginState>(
           listener: (context, state) {
             if (state is LoginSucceed) {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfilePage(dataModel: state.dataModel,)));
             } else if (state is LoginError) {
               Scaffold.of(context).showSnackBar(
                 SnackBar(
