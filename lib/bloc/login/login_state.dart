@@ -29,7 +29,6 @@ class LoginSucceed extends LoginState {
 }
 
 class LoginError extends LoginState {
-
   @override
   String toString() {
     return super.toString();
