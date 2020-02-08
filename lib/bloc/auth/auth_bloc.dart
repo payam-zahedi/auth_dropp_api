@@ -10,5 +10,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> mapEventToState(
     AuthEvent event,
   ) async* {
+    if (event is LogIn) {
+      yield Authenticated();
+    } else if (event is LogOut) {
+      yield UnAuthenticated();
+    }
   }
 }

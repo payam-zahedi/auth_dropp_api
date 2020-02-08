@@ -1,5 +1,7 @@
 {
   "emailFieldLabel": "ایمیل",
+  "errorWhileLogin": "مشکلی رخ داده است",
+  "TextFieldError": "فیلد ضروری",
   "passFieldLabel": "رمز عبور",
   "loginBtnLabel": "ورود",
   "signUpBtnLabel": "ثبت نام",
@@ -7,5 +9,7 @@
   "usernameFieldLabel": "شناسه کاربری",
   "haveAccount": "قبلا ثبت نام کرده اید ؟",
   "signUpPageTitle": "ساخت حساب کاربری",
-  "verifyPageTitle": "تایید حساب کاربری"
+  "verifyPageTitle": "تایید حساب کاربری",
+  "profilePageTitle": "حساب کاربری",
+  "tokenLabel": "توکن :"
 }

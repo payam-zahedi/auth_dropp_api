@@ -1,3 +1,4 @@
+import 'package:auth_dropp_api/bloc/auth/bloc.dart';
 import 'package:auth_dropp_api/bloc/login/login_bloc.dart';
 import 'package:auth_dropp_api/bloc/login/login_event.dart';
 import 'package:auth_dropp_api/bloc/login/login_state.dart';
@@ -31,12 +32,12 @@ class _LoginPageState extends State<LoginPage> {
         body: BlocListener<LoginBloc, LoginState>(
           listener: (context, state) {
             if (state is LoginSucceed) {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfilePage(dataModel: state.dataModel,)));
             } else if (state is LoginError) {
               Scaffold.of(context).showSnackBar(
                 SnackBar(
                   backgroundColor: Colors.red,
-                  content: Text('Failed'),
+                  content: Text(AppLocalizations.of(context).translate('errorWhileLogin')),
                 ),
               );
             }
@@ -70,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: TextFormField(
                             validator: (val) {
                               if (val.isEmpty) {
-                                return 'Enter Your Username';
+                                return AppLocalizations.of(context).translate('TextFieldError');
                               } else {
                                 return null;
                               }
@@ -107,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: TextFormField(
                             validator: (val) {
                               if (val.isEmpty) {
-                                return 'Enter Your Password';
+                                return AppLocalizations.of(context).translate('TextFieldError');
                               } else {
                                 return null;
                               }
@@ -186,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         Center(
                           child: Text(
-                            'Forgotten password?',
+                            AppLocalizations.of(context).translate('forgetPassword'),
                             style: TextStyle(
                                 color: Colors.grey[700], fontSize: 11),
                           ),

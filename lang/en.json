@@ -1,5 +1,7 @@
 {
   "emailFieldLabel": "Email",
+  "errorWhileLogin": "Error Occur",
+  "TextFieldError": "Please Enter Information",
   "passFieldLabel": "Password",
   "loginBtnLabel": "Log in",
   "signUpBtnLabel": "Sign Up",
@@ -7,5 +9,7 @@
   "usernameFieldLabel": "Username",
   "haveAccount": "Already have an account?",
   "signUpPageTitle": "Create Account",
-  "verifyPageTitle": "Verify Account"
+  "verifyPageTitle": "Verify Account",
+  "profilePageTitle": "Profile",
+  "tokenLabel": "Token :"
 }
