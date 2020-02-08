@@ -1,5 +1,7 @@
 {
   "emailFieldLabel": "ایمیل",
+  "errorWhileLogin": "مشکلی رخ داده است",
+  "TextFieldError": "فیلد ضروری",
   "passFieldLabel": "رمز عبور",
   "loginBtnLabel": "ورود",
   "signUpBtnLabel": "ثبت نام",

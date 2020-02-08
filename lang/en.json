@@ -1,5 +1,7 @@
 {
   "emailFieldLabel": "Email",
+  "errorWhileLogin": "Error Occur",
+  "TextFieldError": "Please Enter Information",
   "passFieldLabel": "Password",
   "loginBtnLabel": "Log in",
   "signUpBtnLabel": "Sign Up",
